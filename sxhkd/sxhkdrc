@@ -1,0 +1,211 @@
+#
+# wm independent hotkeys
+#
+
+mod4 + l
+    /home/harrkout/.config/rofi/applets/android/powermenu.sh
+
+# Rotate tree
+mod4 + {f}
+    bspc node @/ -C {forward,backward} 
+
+#Rotate Horizontally
+mod4 + v
+    bspc node $(bspc query -N -n -n .!leaf || echo @/) -R 90
+
+
+mod4 + shift + p
+   ~/.config/bspwm/bspwmrc
+
+
+mod4 + shift + {Left,Right,Up,Down}
+	dir={west,east,north,south}; \
+	bspc node -s "$dir.local" --follow \
+	    || bspc node -m "$dir" --follow
+
+#mod4 + shift + {Left,Down,Up,Right}
+#	~/home/harrkout/Documents/scripts/bin_bin_bspwm_smart_move.txt
+
+
+#switch between windows in monocle
+mod4 + {j, k}
+    bspc node -f {next, prev}.local
+
+#flameshot 
+Print 
+    flameshot gui
+
+
+# terminal emulator
+mod4 + Return
+	tilix
+
+# program launcher
+mod4 + d
+ rofi -no-lazy-grab -show drun -theme  /home/harrkout/.config/rofi/launchers/text/style_2.rasi
+
+# make sxhkd reload its configuration files:
+mod4 + Escape
+	pkill -USR1 -x sxhkd
+
+#Firefox-Nightly
+mod4 + w
+    firefox-nightly &
+
+mod4 +a
+	thunar
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+mod4 + shift+ {Escape,r}
+
+	bspc {quit,wm -r}
+
+# close and kill
+mod4 + shift + q
+	bspc node -{c}
+
+# alternate between the tiled and monocle layout
+mod4 + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+mod4 + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+mod4 + g
+	
+bspc node -n 'last.!automatic.local'
+
+#
+# state/flags
+#
+
+# set the window state
+mod4 + {t,shift + t,s}
+	bspc node -t {tiled,pseudo_tiled,floating}
+
+# set the node flags
+mod4 + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+mod4 + {Left,Right,Up,Down}
+    dir={west,east,north,south}; bspc node "$dir" -f || bspc monitor "$dir" -f
+
+# focus the node for the given path jump
+#mod4 + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+mod4 + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+mod4 + {comma, period}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+mod4 + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+mod4 + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+mod4 + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+mod4 + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+mod4 + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+mod4 + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+mod4 + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+#mod4 + alt + {h,j,k,l}
+#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+mod4 + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+#mod4 + {Left,Down,Up,Right}
+#	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+mod4 + {plus,minus}
+    a="bspc config -d focused window_gap"; $a $(($($a){+,-}5))
+
+
+# Screen Brightness
+XF86MonBrightnessUp 
+	xbacklight -inc 5 # increase screen brightness
+
+XF86MonBrightnessDown
+    xbacklight -dec 5 # decrease screen brightness
+
+# Volume
+XF86AudioRaiseVolume 
+	amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10  
+XF86AudioLowerVolume 
+     amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10
+
+
+XF86AudioMute
+	 amixer -q -D pulse sset Master toggle && pkill -RTMIN+10
+XF86AudioMicMute
+     amixer set Capture toggle
+
+XF86AudioPlay  
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+XF86AudioPrev
+    playerctl previous
+
+
+mod4 + {Left, Down, Up, Right}
+bspc node -n 'last.!automatic.local'
+
+XF86Mail
+    mailspring
+
+
+mod4 + shift + {less,greater}
+
+    bspc node -d {prev,next}.local -f
+
+
+
