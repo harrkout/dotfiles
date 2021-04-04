@@ -1,16 +1,16 @@
-# dotfiles
+## dotfiles
 
 Novemeber 2020 rice
 
 Bspwm
 Polybar
-Tilix
+Sxhkd 
 
-05/04/21 
+Updated on 05/04/21 
 
 >Stop losing the damn configs! (pls stop)
 
-###Polybar changes
+### Polybar changes
 
 1.  Added application modules (launchers)
   > colored icons with foreground and underline
@@ -27,3 +27,8 @@ Tilix
 4. Fan module (just so to know when to expect a helicopter sound blast
 5. Popup Calendar (yad application made floating via bspwmrc)
 
+# Changes to come
+1. tlp config for T440p ( went from 13w to 8.9w -- yay)
+2. rofi command and theme
+3. maybe try pywall?
+4. kitty config (and kitty-cat)
