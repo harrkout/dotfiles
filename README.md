@@ -2,9 +2,11 @@
 
 Novemeber 2020 rice
 
-Bspwm
-Polybar
-Sxhkd 
+1. Bspwm
+2. Polybar
+3. Sxhkd 
+
+![Preview](./dotfiles/preview.png)
 
 Updated on 05/04/21 
 
