@@ -16,19 +16,19 @@ Updated on 05/04/21
   > colored icons with foreground and underline
 
 2. Modules added:
-  2. App menu (rofi theme launcher)
-  2. Monocle/Tiled layout alteration
-  2. firefox
-  2. kitty
-  2. thunar
-  2. thunderbird
+  - [x] App menu (rofi theme launcher)
+  - [x] Monocle/Tiled layout alteration
+  - [x] firefox
+  - [x] kitty
+  - [x] thunar
+  - [x] thunderbird
 
 3. Icons on volumebar and xbacklight (along with gradient underline and colored muted label with visible (muted) volume percentage indicator
 4. Fan module (just so to know when to expect a helicopter sound blast
 5. Popup Calendar (yad application made floating via bspwmrc)
 
 # Changes to come
-1. tlp config for T440p ( went from 13w to 8.9w -- yay)
-2. rofi command and theme
-3. maybe try pywall?
-4. kitty config (and kitty-cat)
+- []tlp config for T440p ( went from 13w to 8.9w -- yay)
+- []rofi command and theme
+- []maybe try pywall?
+- []kitty config (and kitty-cat)
