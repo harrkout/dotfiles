@@ -1,12 +1,20 @@
-#
-# wm independent hotkeys
-#
 
-mod4 + l
+
+
+#Tab + ctrl
+#    rofi -show window -width 50 -theme $HOME/rofi-collection/murz/murz.rasi -no-levenshtein-sort
+
+
+#mouse
+{button8, button9}
+    bspc desktop -f {prev,next}.local
+
+
+mod4 + shift +l
     /home/harrkout/.config/rofi/applets/android/powermenu.sh
 
 # Rotate tree
-mod4 + {f}
+mod4 + {r}
     bspc node @/ -C {forward,backward} 
 
 #Rotate Horizontally
@@ -28,8 +36,8 @@ mod4 + shift + {Left,Right,Up,Down}
 
 
 #switch between windows in monocle
-mod4 + {j, k}
-    bspc node -f {next, prev}.local
+mod4 + {comma, period}
+    bspc node -f {prev, next}.local
 
 #flameshot 
 Print 
@@ -38,11 +46,11 @@ Print
 
 # terminal emulator
 mod4 + Return
-	tilix
+	kitty
 
 # program launcher
 mod4 + d
- rofi -no-lazy-grab -show drun -theme  /home/harrkout/.config/rofi/launchers/text/style_2.rasi
+    rofi -show drun -width 23 -theme $HOME/rofi-collection/murz/murz.rasi
 
 # make sxhkd reload its configuration files:
 mod4 + Escape
@@ -86,8 +94,8 @@ bspc node -n 'last.!automatic.local'
 #
 
 # set the window state
-mod4 + {t,shift + t,s}
-	bspc node -t {tiled,pseudo_tiled,floating}
+mod4 + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen} 
 
 # set the node flags
 mod4 + ctrl + {m,x,y,z}
@@ -109,13 +117,12 @@ mod4 + {Left,Right,Up,Down}
 mod4 + {_,shift + }c
 	bspc node -f {next,prev}.local.!hidden.window
 
-# focus the next/previous desktop in the current monitor
-mod4 + {comma, period}
-	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 mod4 + {grave,Tab}
-	bspc {node,desktop} -f last
+    bspc desktop -f {prev,next}.local
+
+
 
 # focus the older or newer node in the focus history
 mod4 + {o,i}
@@ -132,7 +139,7 @@ mod4 + {_,shift + }{1-9,0}
 #
 
 # preselect the direction
-mod4 + ctrl + {h,j,k,l}
+mod4 + alt + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
@@ -153,19 +160,19 @@ mod4 + ctrl + shift + space
 #
 
 # expand a window by moving one of its side outward
-#mod4 + alt + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+mod4 + ctrl + {Left,Down}
+	bspc node -z {left -20 0,bottom 0 20}
 
 # contract a window by moving one of its side inward
-mod4 + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+mod4 + ctrl + {Up,Right} 
+	bspc node -z {bottom 0 -20,left 20 0}
 
 # move a floating window
 #mod4 + {Left,Down,Up,Right}
 #	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-mod4 + {plus,minus}
-    a="bspc config -d focused window_gap"; $a $(($($a){+,-}5))
+#mod4 + {plus,minus}
+#    a="bspc config -d focused window_gap"; $a $(($($a){+,-}5))
 
 
 # Screen Brightness
@@ -177,9 +184,9 @@ XF86MonBrightnessDown
 
 # Volume
 XF86AudioRaiseVolume 
-	amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10  
+	amixer -q -D pulse sset Master 2%+ && pkill -RTMIN+10  
 XF86AudioLowerVolume 
-     amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10
+     amixer -q -D pulse sset Master 2%- && pkill -RTMIN+10
 
 
 XF86AudioMute
@@ -200,10 +207,10 @@ mod4 + {Left, Down, Up, Right}
 bspc node -n 'last.!automatic.local'
 
 XF86Mail
-    mailspring
+  thunderbird
 
 
-mod4 + shift + {less,greater}
+mod4 + shift + {grave,Tab}
 
     bspc node -d {prev,next}.local -f
 
