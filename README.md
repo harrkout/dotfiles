@@ -16,12 +16,12 @@ Updated on 05/04/21
   > colored icons with foreground and underline
 
 2. Modules added:
-  > App menu (rofi theme launcher)
-  > Monocle/Tiled layout alteration
-  > firefox
-  > kitty
-  > thunar
-  > thunderbird
+  2. App menu (rofi theme launcher)
+  2. Monocle/Tiled layout alteration
+  2. firefox
+  2. kitty
+  2. thunar
+  2. thunderbird
 
 3. Icons on volumebar and xbacklight (along with gradient underline and colored muted label with visible (muted) volume percentage indicator
 4. Fan module (just so to know when to expect a helicopter sound blast
