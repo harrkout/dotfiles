@@ -6,7 +6,7 @@ Novemeber 2020 rice
 2. Polybar
 3. Sxhkd 
 
-![Preview](./dotfiles/preview.png)
+![Preview](./preview.png)
 
 Updated on 05/04/21 
 
@@ -32,5 +32,5 @@ Updated on 05/04/21
 # Changes to come
 - [ ] tlp config for T440p ( went from 13w to 8.9w -- yay)
 - [ ] rofi command and theme
-- [ ] maybe try pywall?
+- [X] maybe try pywall? (think I did it for now)
 - [ ] kitty config (and kitty-cat)
