@@ -28,7 +28,7 @@ Updated on 05/04/21
 5. Popup Calendar (yad application made floating via bspwmrc)
 
 # Changes to come
-- []tlp config for T440p ( went from 13w to 8.9w -- yay)
-- []rofi command and theme
-- []maybe try pywall?
-- []kitty config (and kitty-cat)
+- [ ] tlp config for T440p ( went from 13w to 8.9w -- yay)
+- [ ] rofi command and theme
+- [ ] maybe try pywall?
+- [ ] kitty config (and kitty-cat)
