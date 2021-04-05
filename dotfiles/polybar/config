@@ -64,7 +64,7 @@ underline-size = 1
 
 
 background = #16161C
-foreground = ${colors.foreground}
+foreground = ${colors.foreground}sdf
 
 line-size = 2
 ;line-color = #f00000
