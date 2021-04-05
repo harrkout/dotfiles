@@ -7,6 +7,7 @@ Novemeber 2020 rice
 3. Sxhkd 
 
 ![Preview](./preview.png)
+![Neovim](./nvim.png)
 
 Updated on 05/04/21 
 
