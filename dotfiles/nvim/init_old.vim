@@ -12,12 +12,11 @@ Plug 'nanozuki/tabby.nvim',
 
 
 
-"Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
+Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'
-
-"Plug 'prettier/vim-prettier', {
-"    \ 'do': 'yarn install',
-"    \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html', 'c', 'c++', 'python'] }
+Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html', 'c', 'c++', 'python'] }
 
 " markdown
 Plug 'dkarter/bullets.vim'                              " markdown bullet lists
@@ -64,7 +63,14 @@ Plug 'wellle/tmux-complete.vim'                         " complete words from a 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 
-
+if("nvim")
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 
@@ -82,7 +88,7 @@ highlight Comment gui=bold                              " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
 highlight clear SignColumn                              " use number color for sign colum color
-hi Search guibg=#161b22                                 " search string highlight color
+hi Search guibg=#48576e                                 " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 
 " colors for git(especially the gutter)
@@ -101,17 +107,14 @@ set clipboard+=unnamedplus                              " use system clipboard b
 
 " ===================== Other Configurations ===================== "
 
-set number
-
-
 filetype plugin indent on                               " enable indentations
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent              " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while seaching
 "set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try furaCode)
 set encoding=utf-8                                      " text encoding
-
-                                      " relative numbering to current line (current like is 0 )
+set number                                              " enable numbers on the left
+set number relativenumber                               " relative numbering to current line (current like is 0 )
 set title                                               " tab title as file file
 set conceallevel=2                                      " set this so we womt break indentation plugin
 set splitright                                          " open vertical split to the right
@@ -282,24 +285,9 @@ nmap <C-n> :NERDTreeToggle<CR>
 "filetype plugin indent on
 syntax on
 let g:minimap_width = 6
-"let g:minimap_auto_start = 1
-"let g:minimap_auto_start_win_enter = 1
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
 let g:minimap_highlight_range = 1
 let g:minimap_git_colors = 1
 let g:minimap_highlight_search = 1
-noremap <C-m> :<C-U>MinimapToggle<CR>
-
-noremap <C-s> :sp<BAR>ter<CR>
-noremap <C-w> :q!<CR>
-
-" CTRL-Tab is next tab
-noremap <C-t> :<C-U>tabnew<CR>
-inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
-cnoremap <C-Tab> <C-C>:tabnext<CR>
-" CTRL-SHIFT-Tab is previous tab
-noremap <C-S-Tab> :<C-U>tabprevious<CR>
-inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
-cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
-
-hi Normal guibg=#0c0a18
 

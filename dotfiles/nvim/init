@@ -5,19 +5,17 @@ Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
 Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'luochen1990/rainbow'
-Plug 'ryanoasis/vim-devicons'
+Plug 'cj/vim-webdevicons'
 
-Plug 'nanozuki/tabby.nvim',
 " ================= Functionalities ================= "
 
 
 
 "Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'
-
-"Plug 'prettier/vim-prettier', {
-"    \ 'do': 'yarn install',
-"    \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html', 'c', 'c++', 'python'] }
+Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html'] }
 
 " markdown
 Plug 'dkarter/bullets.vim'                              " markdown bullet lists
@@ -43,7 +41,6 @@ Plug 'sheerun/vim-polyglot'                             " many languages support
 Plug 'tpope/vim-liquid'                                 " liquid language support
 
 " other
-Plug 'wfxr/minimap.vim'
 Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'rhysd/vim-grammarous'                             " grammer checker
 Plug 'rhysd/vim-clang-format'                           " clang stuff
@@ -55,21 +52,13 @@ Plug 'lambdalisue/suda.vim'                             " save as sudo
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'                               " surroud stuff with stuff
-"Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
+Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'romgrk/barbar.nvim'
-
-
-
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-
 call plug#end()
-
 
 "Visual Stuff
 
@@ -82,7 +71,7 @@ highlight Comment gui=bold                              " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
 highlight clear SignColumn                              " use number color for sign colum color
-hi Search guibg=#161b22                                 " search string highlight color
+hi Search guibg=#48576e                                 " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 
 " colors for git(especially the gutter)
@@ -101,17 +90,14 @@ set clipboard+=unnamedplus                              " use system clipboard b
 
 " ===================== Other Configurations ===================== "
 
-set number
-
-
 filetype plugin indent on                               " enable indentations
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent              " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while seaching
-"set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
+set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try furaCode)
 set encoding=utf-8                                      " text encoding
-
-                                      " relative numbering to current line (current like is 0 )
+"set number                                              " enable numbers on the left
+set relativenumber                               " relative numbering to current line (current like is 0 )
 set title                                               " tab title as file file
 set conceallevel=2                                      " set this so we womt break indentation plugin
 set splitright                                          " open vertical split to the right
@@ -126,11 +112,11 @@ set ttyfast                                             " faster scrolling
 set lazyredraw                                          " faster scrolling
 
 " Trim Whitespaces
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    %s/\\\@<!\s\+$//e
-    call winrestview(l:save)
-endfunction
+"function! TrimWhitespace()
+"    let l:save = winsaveview()
+"    %s/\\\@<!\s\+$//e
+"    call winrestview(l:save)
+"endfunction
 
 " Airline
 let g:airline_powerline_fonts = 0
@@ -158,7 +144,6 @@ set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-set cursorcolumn
 
 let g:airline_theme='material'
 highlight Pmenu guibg='00010a' guifg=white              " popup menu colors
@@ -201,19 +186,20 @@ let g:bullets_enable_file_type =['markdown','text','gitcommit','*']             
 "rainbow parentesis
 let g:rainbow_active = 1
 
-"""Press Tab and Shift+Tab and navigate around completion selections
+" use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
-  let col = col'.') -1
-  return !col || getline('.')[col - 1] =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-            
-let g:coc_snippet_next = '<Tab>'              " Use Tab to jump to next snippet placeholder
-let g:coc_snippet_prev = '<S-Tab>'            " Use Shift+Tab to jump to previous snippet placeholder
-
+inoremap <silent><expr> <Tab>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<Tab>" :
+    \ coc#refresh()
 
 " abbrev for markdown
 abbrev ** ●
+
 " the essentials
 let mapleader=","
 nnoremap ; :
@@ -228,8 +214,8 @@ nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
-"inoremap jj <ESC>
-"inoremap xx <ESC>:ToggleCheckbox<CR>
+inoremap jj <ESC>
+inoremap xx <ESC>:ToggleCheckbox<CR>
 
 " use a different buffer for dd
 "nnoremap d "_d
@@ -270,36 +256,18 @@ let g:clang_format#code_style = "WebKit"
 let g:clang_format#auto_format = 1
 
 " disable ale for c and cpp
-let g:ale_linters = {'c': []}
-let g:ale_linters = {'cpp': 'clang'}
-let g:ale_linters = {'cpp': ['clang', 'clangtidy']}
+"let g:ale_linters = {'c': []}
+"let g:ale_linters = {'cpp': 'clang'}
+"let g:ale_linters = {'cpp': ['clang', 'clangtidy']}
 
 " disable ale and now using syntastic
 let g:syntastic_cpp_config_file = '.config'
 nmap <C-n> :NERDTreeToggle<CR>
 
 
-"filetype plugin indent on
-syntax on
-let g:minimap_width = 6
-"let g:minimap_auto_start = 1
-"let g:minimap_auto_start_win_enter = 1
-let g:minimap_highlight_range = 1
-let g:minimap_git_colors = 1
-let g:minimap_highlight_search = 1
-noremap <C-m> :<C-U>MinimapToggle<CR>
+au ColorScheme * hi Error NONE
+au ColorScheme * hi ErrorMsg NONE
+au GuiEnter * hi Error NONE
+au GuiEnter * hi ErrorMsg NONE
 
-noremap <C-s> :sp<BAR>ter<CR>
-noremap <C-w> :q!<CR>
-
-" CTRL-Tab is next tab
-noremap <C-t> :<C-U>tabnew<CR>
-inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
-cnoremap <C-Tab> <C-C>:tabnext<CR>
-" CTRL-SHIFT-Tab is previous tab
-noremap <C-S-Tab> :<C-U>tabprevious<CR>
-inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
-cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
-
-hi Normal guibg=#0c0a18
 
