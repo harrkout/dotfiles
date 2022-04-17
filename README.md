@@ -1,6 +1,6 @@
 ## dotfiles
 
-Novemeber 2020 rice
+2022 (updated) rice
 
 1. Bspwm
 2. Polybar
@@ -23,15 +23,15 @@ Updated on 05/04/21
   - [x] firefox
   - [x] kitty
   - [x] thunar
-  - [x] thunderbird
+  - [x] Mailspring
 
 3. Icons on volumebar and xbacklight (along with gradient underline and colored muted label with visible (muted) volume percentage indicator
 4. Fan module (just so to know when to expect a helicopter sound blast
 5. Popup Calendar (yad application made floating via bspwmrc)
 
 # Changes to come
-- [ ] tlp config for T440p ( went from 13w to 8.9w -- yay)
-- [ ] rofi command and theme
+- [X] tlp config for T440p ( went from 13w to 8.9w -- yay)
+- [] rofi command and theme
 - [X] maybe try pywall? (think I did it for now)
 - [ ] kitty config (and kitty-cat)
 
