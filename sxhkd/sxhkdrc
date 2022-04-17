@@ -1,14 +1,38 @@
 
+super + e
+    /home/harrkout/.config/eww/open_eww.sh
 
+super + shift + e
+    /home/harrkout/.config/eww/close_eww.sh
 
 #Tab + ctrl
 #    rofi -show window -width 50 -theme $HOME/rofi-collection/murz/murz.rasi -no-levenshtein-sort
 
 
+# add to tabbed container
+ctrl + alt + {Left,Down,Up,Right}
+    tabc attach $(bspc query -N -n) {$(bspc query -N -n west),$(bspc query -N -n south),$(bspc query -N -n north),$(bspc query -N -n east)}
+
+# create/remove from tabbed container
+super + z 
+    id=$(bspc query -N -n); \
+    [[ "$(tabc printclass $id)" == "tabbed" ]] \
+    && tabc detach $id \
+    || tabc create $id 
+
+# toggle autoattach in tabbed container
+super + shift + z 
+    tabc autoattach $(bspc query -N -n) 
+
 #mouse
 {button8, button9}
     bspc desktop -f {prev,next}.local
 
+mod4 +shift+ a
+    autorandr home
+
+mod4 + c
+ bspc node -f next.local
 
 mod4 + shift +l
     /home/harrkout/.config/rofi/applets/android/powermenu.sh
@@ -50,7 +74,19 @@ mod4 + Return
 
 # program launcher
 mod4 + d
-    rofi -show drun -width 23 -theme $HOME/rofi-collection/murz/murz.rasi
+    rofi -show drun -width 100 -theme ~/Documents/scripts/rofi-collection/murz/murz.rasi
+
+alt + Tab
+    rofi -show window -width 700 -no-levenshtein-sort -theme ~/Documents/scripts/rofi-collection/murz/murz_window.rasi
+    
+
+
+mod4 + x
+#   rofi -show filebrowser [ -file-browser-dir /home/harrkout ] -width 600
+
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
 
 # make sxhkd reload its configuration files:
 mod4 + Escape
@@ -58,7 +94,7 @@ mod4 + Escape
 
 #Firefox-Nightly
 mod4 + w
-    firefox-nightly &
+    firefox &
 
 mod4 +a
 	thunar
@@ -207,12 +243,15 @@ mod4 + {Left, Down, Up, Right}
 bspc node -n 'last.!automatic.local'
 
 XF86Mail
-  thunderbird
+  mailspring
 
 
 mod4 + shift + {grave,Tab}
 
     bspc node -d {prev,next}.local -f
 
+ctrl + space
+    dunstctl close
 
-
+ctrl + grave
+    dunstctl history-pop
