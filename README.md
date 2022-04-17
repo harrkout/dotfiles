@@ -34,3 +34,11 @@ Updated on 05/04/21
 - [ ] rofi command and theme
 - [X] maybe try pywall? (think I did it for now)
 - [ ] kitty config (and kitty-cat)
+
+# To copy neovim configuration
+- Install neovim
+- copy files to ~/.config/nvim
+- run nvim from temrinal
+- :PlugInstall
+- :PlugUpdate
+- You're ready to go
