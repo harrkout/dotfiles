@@ -1,14 +1,7 @@
 ;==========================================================
 ;
-; THIS IS AN EXAMPLE CONFIGURATION FILE!
-; IT IS NOT SUPPOSED TO WORK OUT OF THE BOX SINCE IS CONTAINS
-; SETTINGS THAT ARE SPECIFIC TO THE MACHINE WHICH WAS USED
-; TO GENERATE IT.
-; Please refer to the web documentation hosted at:
-; https://github.com/polybar/polybar#configuration
-; and
-; https://github.com/polybar/polybar/wiki/Configuration
-; if you want to automatically generate one for you.
+;   Owner: harrkout
+;
 ;
 ;==========================================================
 ;
@@ -30,8 +23,9 @@
 
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #111
+shade0 = ${xrdb:color0}
+background = #ffb52a #${xrdb:color0:#222}
+;background = #111
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #ddd
@@ -43,55 +37,78 @@ alert = #bd2c40
 accent = #4bc98a
 ;accent = #46b9d6
 ;accent = #ff0000
+[color]
+;# Active Colors
+bg = #0E1112
+fg = #C5C8C9
+ 
+;; Colors
+
+alt-bg = #101415
+alt-bg2 = #131718
+alt-bg3 = #232a2c
+
+white = #C5C8C9
+red = #f65b5b
+green = #8dc776
+orange = #e79c61
+yellow = #e7ac7e
+magenta = #bb8fe5
+cyan = #84a0c6
 
 
 [bar/mybar]
-monitor = ${env:MONITOR}
+monitor = ${env:MONITOR:}
 monitor-fallback =
 monitor-strict = false
 override-redirect = true
 monitor-exact = false
-width = 100%
+width = 99.4%
 height = 22px
-offset-x = 0%
-offset-y = 0%
-radius = 0
-fixed-center = false
-bottom = false
+offset-x = 0.3%
+offset-y = 0.2%
+radius = 2
+fixed-center = true
+bottom = false 
 underline-size = 1
+overline-size = 1
 ;separator = "|"
 ;format-separator-foreground = #3A3A3A
 
 
-background = #16161C
-foreground = ${colors.foreground}sdf
+background = #080b21
+foreground = ${colors.foreground}
 
 line-size = 2
 ;line-color = #f00000
 
-border-size = 0px
-border-color = #00000000
+border-size = 1px
+border-color = #535167
 
-padding-left = 1 
+padding-left = 0 
 padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Font Awesome 5 Free Solid:pixelsize=9;2
+font-0 = Consolas:pixelsize=9;2
 font-1 = ShureTechMono Nerd Font:fontformat=truetype:size=10;3
-font-2 = FonShureTechMono Nerd Font:style=Regular:pixelsize=9;2
+font-2 = FonShureTechMono Nerd Font:style=Regular:pixelsize=10;3
 font-3 = Font Awesome 5 Free:pixelsize=20;3
-font-4 = Font Awesome 5 Free Solid:pixelsize=20;3
+font-4 = Monofur:pixelsize=10;3
 font-5 = Font Awesome 5 Brands:pixelsize=20;3
 
-modules-left = sep menu sep bspwm i3 sep monocle sep nightly terminal thunar thunderbird sep
-modules-center =  polywins
-modules-right = psep xkeyboard xbacklight pulseaudio temperature cpu battery system-fan-speed popup-calendar powermenu
-tray-position = right
-tray-padding = 5
-tray-background = #16161C
+#ShureTechMono Nerd Font:fontformat=truetype:size=9;3
 
+modules-left = sep jgmenu sep nightly terminal thunar vscode sep gmail sep polywins
+modules-center = bspwm
+modules-right = xkeyboard sep bsplayout2 sep temperature battery xbacklight pulseaudio date sep #powermenu #sep 
+
+#tray
+tray-position = right
+tray-padding = 3
+tray-background = #0c0a30
+tray-detached=false
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -107,6 +124,46 @@ wm-restack = bspwm
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[module/menu-apps]
+type = custom/menu
+expand-right = true
+
+label-open = 
+label-open-foreground = #1c6cbb
+label-close = 
+label-close-foreground = #d41f1f
+label-separator = ·
+format-spacing = 1
+
+menu-0-1 = 
+menu-0-1-exec = firefox &
+menu-0-1-foreground = #FF4136
+menu-0-1-underline = #FF4136
+
+menu-0-2 =  
+menu-0-2-exec = thunar &
+menu-0-2-foreground =  #0074D9 
+menu-0-2-underline = #0074D9 
+
+menu-0-3 = 
+menu-0-3-exec = kitty &
+menu-0-3-foreground =    #AAAAAA 
+menu-0-3-underline =    #AAAAAA
+
+menu-0-4 = 
+menu-0-4-exec = spotify-adblock &
+menu-0-4-foreground = #E4D00A
+menu-0-4-underline = #FF4136
+
+menu-0-5 = 
+menu-0-5-exec = discord &
+menu-0-5-foreground = #ad3bff
+menu-0-5-underline = #ad3bff
+
+menu-0-0 = 
+menu-0-0-exec = bspc desktop -l next
+menu-0-0-foreground = #ad3bff
+menu-0-0-underline = #ad3bff
 
 [module/menu]
 type = custom/text
@@ -128,6 +185,15 @@ click-right = ~/.config/polybar/scripts/launcher-alt
 scroll-down = ~/.config/polybar/scripts/launcher-full
 
 
+
+[module/discord]
+type = custom/text 
+content =  
+click-left = discord 
+content-foreground = #ad3bff
+content-underline = #ad3bff
+
+
 [module/sep]
 type = custom/text
 content = |
@@ -138,29 +204,48 @@ type = custom/text
 content = 
 click-left = bspc desktop -l next
 content-foreground = #ad3bff
-content-underline = #ad3bff
+label-font = 3
+#content-underline = #ad3bff
+#content-overline = #ad3bff
 
 [module/nightly]
 type = custom/text
 content = 
-click-left = firefox-nightly
+click-left = firefox
 content-foreground = #FF4136
-content-underline = #FF4136
+#content-underline = #FF4136
+#content-overline = #FF4136
 
+[module/spotify-module]
+type = custom/text
+content = 
+click-left = spotify & spotify-tray  
+content-foreground = #E4D00A
+#content-underline = #FF4136
+
+[module/vscode]
+type = custom/text
+content = 
+click-left = code-git
+content-foreground =  #0074D9 
+#content-underline = #0074D9 
+#content-overline = #0074D9 
 
 [module/thunar]
 type = custom/text
 content = 
 click-left = thunar
-content-foreground =  #0074D9 
-content-underline = #0074D9 
+content-foreground =  #008000 
+#content-underline = #008000 
+#content-overline = #008000 
 
 [module/terminal]
 type = custom/text
 content = 
 click-left = kitty
 content-foreground =    #AAAAAA 
-content-underline =    #AAAAAA 
+#content-underline =    #AAAAAA 
+#content-overline =    #AAAAAA 
 
 [module/thunderbird]
 type = custom/text
@@ -168,6 +253,7 @@ content = 
 click-left = thunderbird
 content-foreground = #999999
 content-underline = #999999
+content-overline = #999999
 
 [module/xwindow]
 type = internal/xwindow
@@ -175,20 +261,23 @@ label = %title:0:10:.%
 
 [module/xkeyboard]
 type = internal/xkeyboard
-blacklist-0 = num lock
+blacklist-0 = 
 
 #format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-foreground = #9896A4
+#format-prefix-underline = ${colors.secondary}
+#format-prefix-overline = ${colors.secondary}
 
 label-layout =  %layout%
 label-layout-foreground = #b1b1b3
-label-layout-underline = #b1b1b3
+#label-layout-underline = #b1b1b3
+#label-layout-overline = #b1b1b3
 
 label-indicator-padding = 1
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.primary}
+label-indicator-margin = 0
+label-indicator-background = #363945
+#label-indicator-underline = #DD4124
+#label-indicator-overline = #DD4124
 
 [module/filesystem]
 type = internal/fs
@@ -226,41 +315,53 @@ label-empty = "  %icon% %name% [%nwin%] "
 label-empty-foreground = ${colors.foreground-alt}
 
 
-
-
-
-
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = "%index%"
-;label-focused-background = #950000
-label-focused-foreground = #ff9400
-label-focused-underline= #ff9400
+label-focused = %icon%
+label-focused-background = #11172b
+label-focused-foreground = #ff7200
+#label-focused-underline = #FE840E
+label-focused-overline = #FE840E
+label-focused-background-radius = 5
 label-focused-padding = 1
 label-font = 1
 
-label-occupied = "%index%"
-label-occupied-foreground = #d7d7db
+label-occupied = %icon%
+label-occupied-foreground = #e0e0e0
 
 label-occupied-padding = 1
 
-label-urgent ="%index%"!
+label-urgent = %icon%
 
-label-urgent-background = ${colors.alert}
+label-urgent-foreground = #9B2335
 label-urgent-padding = 1
 
-label-empty = "%index%"
+label-empty = %icon%
 
-label-empty-foreground = ${colors.foreground-alt}
+
+label-empty-foreground = #383838
 label-empty-padding = 1
 
 ; Separator in between workspaces
 ; label-separator = |
 
+ws-icon-0 = 1;I
+ws-icon-1 = 2;II
+ws-icon-2 = 3;III
+ws-icon-3 = 4;IV
+ws-icon-4 = 5;V
+ws-icon-5 = 6;VI
+ws-icon-6 = 7;VII
+ws-icon-7 = 8;VIII
+ws-icon-8 = 9;IX
+ws-icon-9 = 10;X
+;ws-icon-default = ♟
 
-
-
+label-mode = %name%
+label-mode-padding = 1
+label-mode-foreground = ${color.fg}
+label-mode-background = ${color.alt-bg}
 
 [module/i3]
 type = internal/i3
@@ -318,20 +419,25 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format =  <bar><label>
+format = <label>
+#<bar>
+format-foreground = #FFA500
+#format-underline = #FFA500
+#format-overline = #FFA500
 label = %percentage%%
-label-foreground = #d7d7db
+label-foreground = #dddddd
+#label-underline = #FFA500
 
-bar-width = 6
+bar-width = 5
 bar-foreground = ${colors.accent}
 bar-gradient = true
 bar-indicator = |
 bar-indicator-font = 1
 bar-fill = |
 bar-fill-font = 1
-bar-fill-foreground = #30e60b
+bar-fill-foreground = #FFA500
 bar-fill-gradient = true
-bar-fill-underline = #30e60b
+bar-fill-underline = #FFA500
 bar-empty = |
 bar-empty-font = 1
 bar-empty-foreground = ${colors.foreground-alt}
@@ -361,6 +467,7 @@ format-prefix-font = 1
 format-prefix-foreground = #AAAAAA
 format-underline = #AAAAAA
 label = %percentage:2%%
+click-right =exec kitty htop
 
 [module/memory]
 type = internal/memory
@@ -377,7 +484,8 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected = %{A1:nm-applet:}%essid%%{A}
+click-left = nm-connection-editor
 
 format-disconnected = 睊
 ;format-disconnected = <label-disconnected>
@@ -407,35 +515,58 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 1
+exec = ~/.config/polybar/scripts/date.sh
 
-date = 
-date-alt = "%d/%m/%Y"
+icon = ""
+icon-foreground = #84a0c6
+#date = "%{A1:gnome-calendar:}%{A}%{F#ffffff}"
+date-background = #55aa55
+#date-alt = "%d/%m/%Y"
 
 time = "%H:%M:%S"
-time-alt =
+time-alt = "%d/%m/%Y"
+time-alt-foreground = #ffffff
+time-background = #ffffff
 
 format-prefix =
-format-prefix-foreground = ${colors.accent}
+format-prefix-foreground = #FFBF00"
 format-prefix-font = 5
-format-underline = #0a6cf5
+#format-underline = #b2b2b2
+format-prefix-background = #ffffff
+#format-overline = #b2b2b2
 
-label = %date%%time%
+label =  %date%%time%
+label-foreground = #d0d0d0
+#label-background = #383838
+
+click-right = gnome-calendar
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume =  <bar-volume><label-volume>
-label-volume = %percentage%% 
-label-volume-foreground = #d7d7db
+format-volume = <bar-volume><label-volume> 
+#<bar-volume>
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
 
+label-volume = %percentage%%
+label-volume-foreground = #12ddf21
+
+format-volume-foreground = #91A8D0
+#format-volume-overline = #91A8D0
+#label-volume-underline = #91A8D0
+#format-volume-underline = #91A8D0
+#label-volume-overline = #91A8D0
 
 label-volume-token = %token:0:10:...%
-format-muted =  <label-muted>
-label-muted = muted %percentage%%
-label-muted-foreground = #666
+format-muted = <bar-volume><label-muted>
+label-muted = %percentage%%
+label-muted-foreground = #454344
 format-muted-foreground = #454344 
-click-right = exec Pavucontrol &
+click-righddt = exec Pavucontrol &
 
-bar-volume-width = 6
+bar-volume-width = 5
 bar-volume-foreground = ${colors.accent}
 
 bar-volume-gradient = true
@@ -443,9 +574,10 @@ bar-volume-indicator = |
 bar-volume-indicator-font = 1
 bar-volume-fill = |
 bar-volume-fill-font = 1
-bar-volume-fill-foreground = #0a84ff
+bar-volume-fill-foreground =  #91A8D0
 bar-volume-fill-gradient = true
-bar-volume-fill-underline = #0a84ff
+bar-volume-fill-underline =  #91A8D0
+bar-volume-muted-foreground = #ffffff
 bar-volume-empty = |
 bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
@@ -488,17 +620,22 @@ full-at = 98
 label-discharging-margin-left = 0
 label-charging-margin-left = 0
 
+click-left = gnome-power-statistics &
+
 time-format = %H:%M
 
 format-charging = <animation-charging><label-charging>
-format-charging-underline = #ff0039
+#format-charging-underline = #ff0039
+#format-charging-overline = #ff0039
 
-format-discharging = <ramp-capacity><label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity>/<label-discharging>
+#format-discharging-underline = ${self.format-charging-underline}
+#format-discharging-overline = ${self.format-charging-underline}
 
 format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+#format-full-underline = ${self.format-charging-underline}
+#format-full-overline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -528,29 +665,53 @@ animation-discharging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 80
+warn-temperature = 75
+
+click-right = htop
 
 format = <ramp><label>
-format-underline = #f50a4d
 format-warn = <ramp><label-warn>
 format-warn-prefix = 
 format-warn-prefix-font = 1
-format-warn-prefix-foreground = ${colors.accent}
+format-warn-prefix-foreground = #FFA500
 
 format-prefix = ""
 format-prefix-font = 1
 format-prefix-foreground = ${colors.accent}
 
+#format-underline = #FFA500
+#format-overline = #FFA500
+
 label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn = %temperature-c% 
+label-warn-foreground = #FFA500
+#label-warn-underline = #FFA500
+#label-warn-overline = #FFA500
+#label-underline = #FFA500
+#label-overline = #FFA500
 
 ramp-0 = 
+ramp-0-foreground = #9BB7D4
+#ramp-0-underline = #FFA500
+#ramp-0-overline = #FFA500
 ramp-1 = 
+ramp-1-foreground = #E0B589
+#ramp-1-underline = #FFA500
+#ramp-1-overline = #FFA500
 ramp-2 = 
-ramp-foreground = ${colors.secondary}
+ramp-2-foreground = #CD212A
+#ramp-2-underline = #FFA500
+#ramp-2-overline = #FFA500
 
-[module/powermenu]
+
+
+[module/powermenu-rofi]
+type = custom/script
+content = 
+
+click-left = /home/harrkout/.config/rofi/applets/android/powermenu.sh
+
+[module/powermenuu]
 type = custom/menu
 
 expand-right = true
@@ -563,6 +724,8 @@ label-close =  cancel
 label-close-foreground = ${colors.accent}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
+label-open-underline = #FF4136
+
 
 menu-0-0 = logout
 menu-0-0-exec = logout
@@ -617,27 +780,27 @@ interval = 60
 type = custom/script
 exec = ~/.scripts/openweathermap-simple.sh
 interval = 600
-label-font = 1
+label-font = 3
+label-underline = #75647
 
 [module/jgmenu]
 type = custom/text
 content-padding = 0
-content = ""
+content = 
 click-left = "jgmenu_run >/dev/null >&1 &"
+content-foreground = #dc7633
+label-font = 3
+#content-underline = #dc7633
+#content-overline = #dc7633
 
 [module/pulseaudio-control]
+
 type = custom/script
 tail = true
 #format-underline = ${colors.cyan}
 label-padding = 2
 label-foreground = ${colors.foreground}
 
-
-
-# Icons mixed from Font Awesome 5 and Material Icons
-# You can copy-paste your options for each possible action, which is more
-# trouble-free but repetitive, or apply only the relevant ones (for example
-# --sink-blacklist is only needed for next-sink).
 exec = pulseaudio-control --icons-volume "," --icon-muted "" --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_00_1b.0.analog-stereo:  Speakers" --sink-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" listen
 click-right = exec pavucontrol &
 click-left = pulseaudio-control togmute
@@ -656,9 +819,16 @@ exec = ~/.config/polybar/scripts/music.py
 
 [module/popup-calendar]
 type = custom/script
-exec = /home/harrkout/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh
-interval = 1
+#format-prefix = ${env:calendarprefix}
+#format-prefix-foreground = ${env:calendarcolorprefix}
+#format-prefix-font = ${env:calendarfontprefix}
+#exec = /home/harrkout/.config/polybar/polybar-scripts/polybar-calendar-master/calendar.sh
+
+format-padding = 1
 click-left = /home/harrkout/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh --popup &
+label-underline =  #939597
+
+ 
 
 
 [module/spotify]
@@ -696,7 +866,8 @@ click-left = playerctl next spotify
 type = custom/script
 exec = /home/harrkout/.config/polybar/polybar-scripts/system-fan-speed/system-fan-speed.sh
 interval = 5
-
+click-right = kitty s-tui
+label-underline = #00A170
 
 
 
@@ -704,3 +875,208 @@ interval = 5
 type = custom/script
 exec = /home/harrkout/.config/polybar/polybar-scripts/battery-combined-tlp/battery-combined-tlp.sh -S
 interval = 10
+
+[module/powermenu]
+type = custom/text 
+content = 
+content-padding = 0
+click-left = /home/harrkout/.config/rofi/applets/android/powermenu.sh &
+content-foreground = #e06c75
+format-spacing = 0
+
+content-underline = #FF4136
+
+[module/gmail]
+type = custom/script
+exec = ~/.config/polybar/gmail/launch.py
+tail = true
+click-right = xdg-open https://mail.google.com
+click-left = mailspring
+underline = #fff3e3
+
+
+[module/rofi-calendar]
+command=$SCRIPT_DIR/rofi-calendar
+interval=3600
+#BAR_POSITION=bottom
+#WEEK_START=monday
+#DATEFTM=+%a %d %b %Y
+#SHORTFMT=+%d/%m/%Y
+#LABEL= 
+#FONT=Monospace 10
+#LEFTCLICK_PREV_MONTH=false
+#PREV_MONTH_TEXT=« previous month «
+#NEXT_MONTH_TEXT=» next month »
+#ROFI_CONFIG_FILE=/dev/null
+
+[module/audio_i]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume>
+format-volume-background = ${color.alt-bg}
+format-volume-foreground = ${color.yellow}
+format-volume-padding = 1
+
+format-muted-background = ${color.alt-bg}
+format-muted-foreground = ${color.red}
+format-muted-padding = 1
+
+label-muted = 
+label-muted-foreground = ${color.red}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/network]
+type = internal/network
+
+interface = wlan0
+interval = 1.0
+
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <label-connected>
+format-connected-background = ${color.bg}
+format-connected-foreground = ${color.green}
+format-connected-padding = 0
+ 
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.bg}
+format-disconnected-foreground = ${color.red}
+format-disconnected-padding = 0
+
+label-connected = "%{A1:$HOME/.local/bin/ntwkmgr &:}%essid%%{A}"
+label-disconnected = "Disconnected "
+
+
+[module/network_i]
+type = internal/network
+interface = wlan0
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <label-connected>
+format-connected-background = ${color.alt-bg}
+format-connected-foreground = ${color.green}
+format-connected-padding = 1
+ 
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.alt-bg}
+format-disconnected-foreground = ${color.red}
+format-disconnected-padding = 1
+
+label-disconnected =  
+label-connected = %{A1:nm-connection-editor:}%essid%%{A}
+
+[module/date2]
+type = internal/date
+
+interval = 1.0
+
+format = <label>
+format-background = ${color.alt-bg} 
+format-foreground = #84a0c6
+format-padding = 1
+
+# time = %H:%M // %a %d/%m
+time =  %H:%M:%S
+time-alt = %b %d, %G ~ %A
+label = %time% 
+label-underline = #84a0c6
+
+
+[module/circleStart]
+type = custom/text
+
+content = 
+content-foreground = #0E1112
+content-font = 3
+
+[module/circleStart2]
+type = custom/text
+
+content = 
+content-foreground = #101415
+content-font = 3
+
+[module/circleEnd]
+type = custom/text
+
+content = 
+content-foreground = #101415
+content-font = 3
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+unknown-as-up = true
+
+format-connected-font = 2
+
+format-connected-background  = ${colors.background}
+format-connected-foreground  = #778899
+format-connected-padding = 0
+format-connected = %{A1:/home/harrkout/.config/polybar/scripts/rofi-network-manager/rofi-network-manager.sh:}<ramp-signal>%{A}
+label-connected = %essid%
+format-connected-underline = #778899
+format-disconnected-background  = ${colors.background}
+format-disconnected-foreground = ${colors.foreground}
+format-disconnected-padding = 1
+format-disconnected = %{A1:/home/harrkout/.config/polybar/scripts/rofi-network-manager/rofi-network-manager.sh:}<label-disconnected>%{A}
+label-disconnected =""
+ramp-signal-0 =  ""
+ramp-signal-1 =  ""
+ramp-signal-2 =  ""
+ramp-signal-3 =  ""
+ramp-signal-4 =  ""
+
+ramp-signal-foreground = ${colors.white}
+
+
+[module/wired-network]
+type = internal/network
+interface = eth0
+interval = 3.0
+format-connected-background  = ${colors.background}
+format-connected-foreground  = ${colors.foreground}
+format-connected-padding = 1
+format-connected = %{A1:$HOME/.../rofi-network-manager/rofi-network-manager.sh:}<label-connected>%{A}
+label-connected =  %local_ip%
+format-disconnected-background  = ${colors.background}
+format-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-padding = 1
+format-disconnected = %{A1:$HOME/.../rofi-network-manager/rofi-network-manager.sh:}<label-disconnected>%{A}
+label-disconnected ="󰌺"
+
+
+[module/weather]
+type = custom/script
+exec = python ~/.config/polybar/scripts/polybarWeather.py uuuuuuuuuu-i 261745 -c tr -a 11ec6a1574ac11132243ecf97a24f504
+
+[module/date_cal]
+type = custom/script
+exec = ~/.config/polybar/scripts/date.sh
+label = %output% 
+;format = <label>
+interval = 1
+click-left = xdotool key Caps_Lock
+;format-background = ${colors.background}
+format-padding = 3
+
+[module/bsplayout2]
+type = custom/script
+exec = bspc query -T -d | gron | grep -Po 'userLayout = .\K(t|m)'
+interval = 0.1                                                   
+click-left = bspc desktop -l next                                            
+background = #ad3bff                                                 
+underline = #ad3bff
