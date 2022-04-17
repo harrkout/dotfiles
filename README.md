@@ -6,8 +6,8 @@ Novemeber 2020 rice
 2. Polybar
 3. Sxhkd 
 
-![Preview](./preview.png)
-![Neovim](./nvim.png)
+#![Preview](./preview.png)
+![Neovim](./2022.png)
 
 Updated on 05/04/21 
 
