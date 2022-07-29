@@ -12,7 +12,7 @@ Updated on 05/04/21
 
 
 > Polybar
-![Preview](./polybar 2022.png)
+![polybar 2022](./polybar 2022.png)
 
 >Stop losing the damn configs! (pls stop)
 
