@@ -9,7 +9,7 @@
 
 ![Preview](./dash_23.png)
 
-Updated on 21/04/23 
+Updated on 23/04/23 
 
 > Polybar
 ![Preview](./bar_23.png)
