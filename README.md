@@ -10,11 +10,11 @@
 
 Updated on 05/04/21 
 
-
 > Polybar
-![Preview](./bar23.png)
+![Preview](./bar_23.png)
 
->Stop losing the damn configs! (pls stop)
+> Jgmenu
+![Preview](./jgmenu.png)
 
 ### Polybar changes
 
@@ -35,14 +35,12 @@ Updated on 05/04/21
 
 # Changes to come
 - [X] tlp config for T440p ( went from 13w to 8.9w -- yay)
-- [] rofi command and theme
+- [x] rofi command and theme
 - [X] maybe try pywall? (think I did it for now)
-- [ ] kitty config (and kitty-cat)
+- [x] kitty config (and kitty-cat)
+- [x] jgmenu 
+- [x] zsh
 
 # To copy neovim configuration
-- Install neovim
-- copy files to ~/.config/nvim
-- run nvim from temrinal
-- :PlugInstall
-- :PlugUpdate
-- You're ready to go
+- eww widgets maybe
+- no more ideas for now...
