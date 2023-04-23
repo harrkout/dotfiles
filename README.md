@@ -4,7 +4,8 @@
 
 1. Bspwm
 2. Polybar
-3. Sxhkd 
+3. Jgmenu
+4. Much more stuff in dotfiles directory 
 
 ![Preview](./dash_23.png)
 
