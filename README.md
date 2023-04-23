@@ -42,6 +42,5 @@ Updated on 23/04/23
 - [x] jgmenu 
 - [x] zsh
 
-# To copy neovim configuration
-- eww widgets maybe
-- no more ideas for now...
+- [ ] eww widgets maybe
+- [ ] no more ideas for now...
