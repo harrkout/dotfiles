@@ -1,18 +1,18 @@
 ## dotfiles
 
-2022 (updated) rice
+2023 (updated) rice
 
 1. Bspwm
 2. Polybar
 3. Sxhkd 
 
-![Preview](./2022.png)
+![Preview](./dash_23.png)
 
 Updated on 05/04/21 
 
 
 > Polybar
-![Preview](./polybar2022.png)
+![Preview](./bar23.png)
 
 >Stop losing the damn configs! (pls stop)
 
