@@ -57,6 +57,41 @@ yellow = #e7ac7e
 magenta = #bb8fe5
 cyan = #84a0c6
 
+[bar/tray]
+monitor-strict = true
+width = 20
+height = 18
+offset-x = 96% ######### offset values only dtermine the position of bar in the screen set it accordingly to your need
+offset-y = 5   
+
+border-size = 5px
+border-color = #bb8fe5
+
+override-redirect = true  ############### to make offset vales to work override-direct value must be true
+wm-restack = bspwm
+
+fixed-center = true
+background = ${colors.modules-right-background}
+foreground = ${colors.foreground}
+radius = 2
+line-size = 1
+line-color = #f00
+
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+modules-right =  sep
+
+tray-position = right
+tray-detached = true
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 3
+tray-maxsize = 20
+tray-scale = 1.0
+tray-background = ${colors.background}
+
 
 [bar/mybar]
 monitor = ${env:MONITOR:}
@@ -64,20 +99,21 @@ monitor-fallback =
 monitor-strict = false
 override-redirect = true
 monitor-exact = false
-width = 99.4%
-height = 22px
+width = 99.5%
+height = 19px
 offset-x = 0.3%
-offset-y = 0.2%
-radius = 2
+offset-y = 0.4%
+radius = 5
 fixed-center = true
 bottom = false 
 underline-size = 1
 overline-size = 1
 ;separator = "|"
 ;format-separator-foreground = #3A3A3A
+;dpi = -1
 
-
-background = #080b21
+background = #0C0A18
+;#080b21
 foreground = ${colors.foreground}
 
 line-size = 2
@@ -86,30 +122,33 @@ line-size = 2
 border-size = 1px
 border-color = #535167
 
-padding-left = 0 
-padding-right = 1
+padding-left = 2 
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Consolas:pixelsize=9;2
-font-1 = ShureTechMono Nerd Font:fontformat=truetype:size=10;3
-font-2 = FonShureTechMono Nerd Font:style=Regular:pixelsize=10;3
-font-3 = Font Awesome 5 Free:pixelsize=20;3
-font-4 = Monofur:pixelsize=10;3
-font-5 = Font Awesome 5 Brands:pixelsize=20;3
+font-0 = Source Code Pro SemiBold:pixelsize=9;2
+font-1 = ShureTechMono Nerd Font:fontformat=truetype:size=9;2
+font-2 = FonShureTechMono Nerd Font:style=Regular:pixelsize=9;2
+font-3 = Font Awesome 5 Free:pixelsize=11;2
+font-4 = Monofurbold Nerd Font Mono:pixelsize10;3
+font-5 = Font Awesome 5 Brands:pixelsize=9;2
 
 #ShureTechMono Nerd Font:fontformat=truetype:size=9;3
 
-modules-left = sep jgmenu sep nightly terminal thunar markdown vscode sep gmail sep polywins
+modules-left = jgmenu sep openweathermap-simple sep gmail sep polywins #nightly #terminal #thunar #vscode #sep #gmail #sep #polywins
 modules-center = bspwm
-modules-right = xkeyboard sep bsplayout2 sep cpu battery temperature sep xbacklight pulseaudio sep date sep systray #powermenu #sep 
+modules-right = xkeyboard mod2 battery temperature cpu xbacklight sep bluetooth pulseaudio sep date #powermenu #sep 
 
 #tray
 tray-position = right
-tray-padding = 3
-tray-background = #0c0a30
+tray-padding = 6pt
+tray-background = #080B21
 tray-detached=false
+
+tray-maxsize = 16
+tray-scale = 1.0
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -129,37 +168,34 @@ cursor-scroll = ns-resize
 type = custom/menu
 expand-right = true
 
-label-open = 
+click-right = "jgmenu_run >/dev/null >&1 &" 
+
+label-open = 
 label-open-foreground = #1c6cbb
 label-close = 
 label-close-foreground = #d41f1f
-label-separator = ·
-format-spacing = 1
+label-separator = 
+format-spacing = 2
 
 menu-0-1 = 
 menu-0-1-exec = firefox &
 menu-0-1-foreground = #FF4136
-menu-0-1-underline = #FF4136
 
 menu-0-2 =  
 menu-0-2-exec = thunar &
 menu-0-2-foreground =  #0074D9 
-menu-0-2-underline = #0074D9 
 
 menu-0-3 = 
 menu-0-3-exec = kitty &
 menu-0-3-foreground =    #AAAAAA 
-menu-0-3-underline =    #AAAAAA
 
 menu-0-4 = 
 menu-0-4-exec = spotify-adblock &
 menu-0-4-foreground = #E4D00A
-menu-0-4-underline = #FF4136
 
 menu-0-5 = 
 menu-0-5-exec = discord &
 menu-0-5-foreground = #ad3bff
-menu-0-5-underline = #ad3bff
 
 menu-0-0 = 
 menu-0-0-exec = bspc desktop -l next
@@ -194,10 +230,12 @@ click-left = discord
 content-foreground = #ad3bff
 content-underline = #ad3bff
 
-[module/markdown]
+[module/dimmer]
 type = custom/text 
-content =  
-click-left = marktext
+#content =  
+content = 
+#click-left = marktext
+click-left = screendimmer
 content-foreground = #ad3bbb
 #content-underline = #ad3bff
 
@@ -207,6 +245,12 @@ content-foreground = #ad3bbb
 type = custom/text
 content = |
 content-foreground = #4a4a4f
+
+[module/sep2]
+type = custom/text
+content = " "
+content-foreground = #4a4a4f
+
 
 [module/monocle]
 type = custom/text
@@ -271,6 +315,7 @@ label = %title:0:10:.%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
+blacklist-1 = caps lock
 
 format-prefix = 
 format-prefix-foreground = #9896A4
@@ -329,11 +374,11 @@ label-empty-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %icon%
-label-focused-background = #11172b
+label-focused = 
+;label-focused-background = #11172b
 label-focused-foreground = #ff7200
 #label-focused-underline = #FE840E
-label-focused-overline = #FE840E
+#label-focused-overline = #FE840E
 label-focused-background-radius = 5
 label-focused-padding = 1
 label-font = 1
@@ -357,16 +402,16 @@ label-empty-padding = 1
 ; Separator in between workspaces
 ; label-separator = |
 
-ws-icon-0 = 1;I
-ws-icon-1 = 2;II
-ws-icon-2 = 3;III
-ws-icon-3 = 4;IV
-ws-icon-4 = 5;V
-ws-icon-5 = 6;VI
-ws-icon-6 = 7;VII
-ws-icon-7 = 8;VIII
-ws-icon-8 = 9;IX
-ws-icon-9 = 10;X
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
 ;ws-icon-default = ♟
 
 label-mode = %name%
@@ -510,6 +555,7 @@ type=internal/cpu
 interval=5
 format-prefix-font=2
 format-prefix=" "
+click-left = exec kitty &
 format-padding=0
 format-prefix-foreground=${color.background}
 format-foreground= #A9A9A9
@@ -566,31 +612,32 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 1
-exec = ~/.config/polybar/scripts/date.sh
+#exec = ~/.config/polybar/scripts/date.sh
 
-icon = ""
-icon-foreground = #84a0c6
+
+icon = ""
+icon-foreground = #fba92c
 #date = "%{A1:gnome-calendar:}%{A}%{F#ffffff}"
 date-background = #55aa55
 #date-alt = "%d/%m/%Y"
 
 time = "%H:%M:%S"
-time-alt = "%d/%m/%Y"
+time-alt = "%d/%m/%y"
 time-alt-foreground = #ffffff
 time-background = #ffffff
+time-click-right = eww open calendar 
 
 format-prefix =
-format-prefix-foreground = #FFBF00"
-format-prefix-font = 5
+format-prefix-foreground = #FFBF00
+#format-prefix-font = 4
 #format-underline = #b2b2b2
 format-prefix-background = #ffffff
 #format-overline = #b2b2b2
 
-label =  %date%%time%
-label-foreground = #d0d0d0
+label = %date%%time%
+label-foreground = #FDEB67
 #label-background = #383838
 
-#click-right = morgen
 
 
 [module/pulseaudio]
@@ -739,11 +786,11 @@ warn-temperature = 75
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
-format-warn-prefix = 
+format-warn-prefix = 
 format-warn-prefix-font = 1
 format-warn-prefix-foreground = #FFA500
 
-format-prefix = ""
+format-prefix = ""
 format-prefix-font = 1
 format-prefix-foreground = ${colors.accent}
 
@@ -810,9 +857,9 @@ label-charging-background=${color.background}
 label-discharging-background=${color.background}
 label-full-background=${color.background}
 
-label-charging-foreground=${color.background}
-label-discharging-foreground={color.background}
-label-full-foreground=${color.green}
+label-charging-foreground=#b5b35c
+label-discharging-foreground=#a9a9a9
+label-full-foreground=#a9a9a9
 
 ramp-capacity-0=""
 ramp-capacity-1=""
@@ -820,7 +867,7 @@ ramp-capacity-2=""
 ramp-capacity-3=""
 ramp-capacity-4=""
 ramp-capacity-font=1
-ramp-capacity-foreground={$color.background}
+ramp-capacity-foreground=#b5b35c
 ramp-capacity-background=${color.background}
 
 animation-charging-0=""
@@ -833,6 +880,7 @@ animation-charging-foreground=${color.green}
 animation-charging-background=${color.background}
 animation-charging-framerate=750
 
+click-left = 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 
@@ -910,18 +958,18 @@ interval = 60
 
 [module/openweathermap-simple]
 type = custom/script
-exec = ~/.scripts/openweathermap-simple.sh
+exec = ~/.config/polybar/scripts/weather.sh
+click-left = exec meteo &
 interval = 600
-label-font = 3
-label-underline = #75647
+label-font = 2
 
 [module/jgmenu]
 type = custom/text
-content-padding = 0
-content = 
+content-padding = 1
+content =
 click-left = "jgmenu_run >/dev/null >&1 &"
 content-foreground = #dc7633
-label-font = 3
+label-font = 0
 #content-underline = #dc7633
 #content-overline = #dc7633
 
@@ -951,15 +999,9 @@ exec = ~/.config/polybar/scripts/music.py
 
 [module/popup-calendar]
 type = custom/script
-#format-prefix = ${env:calendarprefix}
-#format-prefix-foreground = ${env:calendarcolorprefix}
-#format-prefix-font = ${env:calendarfontprefix}
-#exec = /home/harrkout/.config/polybar/polybar-scripts/polybar-calendar-master/calendar.sh
-
-format-padding = 1
-click-left = /home/harrkout/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh --popup &
-label-underline =  #939597
-
+exec = ~/.config/polybar/scripts/popup-calendar.sh
+interval = 5
+click-left = ~/polybar-scripts/popup-calendar.sh --popup &
  
 
 
@@ -1023,7 +1065,7 @@ type = custom/script
 exec = ~/.config/polybar/gmail/launch.py
 tail = true
 click-right = xdg-open https://mail.google.com
-click-left = mailspring
+click-left = thunderbird
 underline = #fff3e3
 
 
@@ -1193,7 +1235,7 @@ label-disconnected ="󰌺"
 
 [module/weather]
 type = custom/script
-exec = python ~/.config/polybar/scripts/polybarWeather.py uuuuuuuuuu-i 261745 -c tr -a 11ec6a1574ac11132243ecf97a24f504
+exec = python ~/.config/polybar/scripts/polybarWeather.py -i 261745 -c tr -a 11ec6a1574ac11132243ecf97a24f504
 
 [module/date_cal]
 type = custom/script
@@ -1290,13 +1332,14 @@ tail = true
 
 [module/systray]
 
-type=custom/ipc
-hook-0=echo " "
-hook-1=echo " "
+#type=custom/ipc
+type = custom/menu
+expand-right = true
+label-open  = 
+label-close = 
 click-left=systray
-initial=2
+initial=1
 format-font=2
-
 format-foreground=${color.blue}
 
 [module/volume]
@@ -1342,4 +1385,81 @@ ramp-volume-background=${color.altblend}
 
 ramp-headphones-0=
 ramp-headphones-1=
+
+
+[module/arrow]
+type = custom/script
+exec = echo ""
+click-left = bash $HOME/.config/polybar/scripts/Tiny_polybar-main/tinybar.sh
+click-right = bash $HOME/.config/polybar/scripts/Tiny_polybar-main/killbar.sh
+
+[module/bluetooth]
+type = custom/script
+;  
+
+exec = sh ~/.config/polybar/scripts/system-bluetooth-bluetoothctl.sh
+interval = 5
+tail = true
+
+#format-background = #70000000
+
+format-prefix = " "
+format-prefix-foreground = #9370DB
+
+#click-left = sh ~/.config/polybar/scripts/system-bluetooth-bluetoothctl.sh --toggle &
+click-right = blueberry &
+
+[module/mod2]
+type = internal/bspwm
+format = <label-mode>
+
+label-monocle = ""
+label-monocle-foreground = #d1e231
+#label-monocle-background = ${color.alt-bg}
+
+label-tiled = ""
+label-tiled-foreground = #1da7dd
+#label-tiled-background = ${color.alt-bg}
+label-tiled-padding = 0
+
+#label-fullscreen = ""
+#label-fullscreen-foreground = ${color.alt-bg2}
+#label-fullscreen-background = ${color.alt-bg}
+#label-fullscreen-padding = 0
+
+label-floating = ""
+#label-floating-foreground = ${color.alt-bg2}
+#label-floating-background = ${color.alt-bg}
+label-floating-padding = 0
+
+#label-pseudotiled = ""
+#label-pseudotiled-foreground = ${color.alt-bg2}
+#label-pseudotiled-background = ${color.alt-bg}
+#label-pseudotiled-padding = 0
+
+#label-locked = ""
+#label-locked-foreground = ${color.alt-bg2}
+#label-locked-background = ${color.alt-bg}
+#label-locked-padding = 0
+
+#label-sticky = ""
+#label-sticky-foreground = ${color.alt-bg2}
+#label-sticky-background = ${color.alt-bg}
+#label-sticky-padding = 0
+
+#label-marked = ""
+#label-marked-foreground = ${color.alt-bg2}
+#label-marked-background = ${color.alt-bg}
+#label-marked-padding = 0
+
+#label-private = ""
+#label-private-foreground = ${color.alt-bg2}
+#label-private-background = ${color.alt-bg}
+#label-private-padding = 0
+
+#format-padding = 0
+#format-foreground = ${color.alt-bg2}
+#format-background = ${color.alt-bg}
+
+format-font = 1
 
