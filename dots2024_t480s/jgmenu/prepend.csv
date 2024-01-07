@@ -1,0 +1,19 @@
+Terminal,kitty,utilities-terminal
+Firefox,firefox,web-browser
+File Manager,thunar,system-file-manager
+VScode,code,text-editor
+Dimmer, screendimmer, screendimmer
+Ferdium, ferdium, ferdium
+Discord, discord, discord
+#Media Player,bl-media-player,multimedia-player
+^sep()
+Telegram, telegram-desktop, telegram
+Viber, viber, viber
+
+^sep()
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+Restart BSPWM,bspc wm -r 
+Restart Polybar,poly-reset,xfce4-systray
+Restart SXHKD,keeb-reset,input-keyboard
+Restart Pipewire,systemctl --user restart pipewire.service pipewire-pulse.socket && poly-reset,audio-speakers
+^sep()
+
+Terminal,xfce4-terminal,utilities-terminal
+Browser,firefox,firefox
+File manager,thunar,system-file-manager
+^sep()
